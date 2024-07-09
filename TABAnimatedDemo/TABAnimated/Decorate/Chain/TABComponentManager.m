@@ -78,10 +78,11 @@
     return ^TABBaseComponent *(NSInteger index) {
         NSString *key = tab_NSStringFromIndex(index);
         if (!weakSelf.componentDict[key]) {
-            NSAssert(NO, @"Array bound, please check it carefully.");
-            TABComponentLayer *layer = TABComponentLayer.new;
-            layer.loadStyle = TABViewLoadAnimationRemove;
-            return [TABBaseComponent componentWithLayer:layer manager:weakSelf];
+            return nil;
+//            NSAssert(NO, @"Array bound, please check it carefully.");
+//            TABComponentLayer *layer = TABComponentLayer.new;
+//            layer.loadStyle = TABViewLoadAnimationRemove;
+//            return [TABBaseComponent componentWithLayer:layer manager:weakSelf];
         }
         return weakSelf.componentDict[key];
     };
@@ -102,10 +103,10 @@
                 [tempArray addObject:layer];
             }
         }
-        if (!canUseDict) {
-            NSAssert(NO, @"Useless location and length, please check it carefully.");
-            return @[];
-        }
+//        if (!canUseDict) {
+//            NSAssert(NO, @"Useless location and length, please check it carefully.");
+//            return @[];
+//        }
         return tempArray.copy;
     };
 }
