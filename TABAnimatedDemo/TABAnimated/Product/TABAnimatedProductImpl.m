@@ -302,7 +302,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (strongSelf.controlView && [[strongSelf.controlView tabAnimated] state] == TABViewAnimationEnd) return;
+        if (strongSelf.controlView && [[strongSelf.controlView tabAnimated] state] == TABViewAnimationEnd) {
+            view.hidden = NO;
+            [strongSelf _recoveryProductStatus];
+            return;
+        }
         if (strongSelf.weakTargetViewArray.allObjects.count == 0) return;
         if (strongSelf.productIndex > strongSelf.weakTargetViewArray.allObjects.count - 1) return;
         
